@@ -1,6 +1,7 @@
 package server
 
 import (
+	"backend/models"
 	"log"
 	"net/http"
 	"time"
@@ -8,8 +9,8 @@ import (
 
 type myHandler struct{}
 
-func (my myHandler) ServerHTTP(w http.ResponseWriter, r *http.Request) {
-
+func (my myHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	models.Routes[r.Method][r.URL.Path](w, r)
 }
 
 func StartServer() {

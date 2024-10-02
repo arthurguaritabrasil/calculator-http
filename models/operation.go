@@ -10,3 +10,7 @@ type Operation struct {
 type Operator interface {
 	calculateOp(a, b float32, op string) float32
 }
+
+var Operations = map[string]Operator{
+	"+": Sum{},
+}

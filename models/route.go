@@ -14,6 +14,8 @@ var Routes = map[string]map[string]func(http.ResponseWriter, *http.Request){
 	},
 }
 
-func Runner() {
+func Runner(w http.ResponseWriter, r *http.Request) {
+
+	op := r.URL.Query().Get("op")
 
 }
