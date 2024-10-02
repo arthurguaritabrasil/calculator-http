@@ -6,8 +6,8 @@ import (
 )
 
 type HttpMessage struct {
-	Code  int
-	Error string
+	Code  int    `json: "code"`
+	Error string `json: "error"`
 }
 
 var httpMessages = map[int]HttpMessage{
