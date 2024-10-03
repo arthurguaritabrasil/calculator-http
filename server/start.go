@@ -1,16 +1,28 @@
 package server
 
 import (
-	"backend/models"
+	"backend/utils"
 	"log"
 	"net/http"
 	"time"
 )
 
+var Routes = map[string]map[string]func(http.ResponseWriter, *http.Request){
+	"GET": {
+		"/result": utils.Runner,
+	},
+}
+
 type myHandler struct{}
 
 func (my myHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	models.Routes[r.Method][r.URL.Path](w, r)
+
+	if !utils.ItsMethodPathValid(r) {
+		utils.WriteResultError(w, 404)
+		return
+	}
+
+	Routes[r.Method][r.URL.Path](w, r)
 }
 
 func StartServer() {

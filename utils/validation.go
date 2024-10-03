@@ -1,14 +1,13 @@
 package utils
 
 import (
-	"backend/models"
 	"net/http"
 )
 
 func ItsMethodPathValid(r *http.Request) bool {
-	return models.Routes[r.Method][r.URL.Path] != nil
+	return r.Method == "GET" && r.URL.Path == "/result"
 }
 
 func ItsOperationValid(op string) bool {
-	return models.Operations[op] != nil
+	return Operations[op] != nil
 }
